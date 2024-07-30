@@ -6,12 +6,12 @@ import { fetchUpcomingMovies, selectUpcomingMovies } from '../features/movie/mov
 import Card from './Card';
 
 function Row(props) {
-    const { title } = props;
-    const { data, status, error } = useSelector(selectUpcomingMovies);
+    const { title, action, selector } = props;
+    const { data, status, error } = useSelector(selector);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(fetchUpcomingMovies());
+        dispatch(action());
     }, [])
 
     return (
