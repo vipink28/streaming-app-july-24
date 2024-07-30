@@ -13,8 +13,8 @@ function Ratings(props) {
                 {
                     stars.map((item, index) => (
                         index < vote ?
-                            <FontAwesomeIcon icon={solidStar} /> :
-                            <FontAwesomeIcon icon={faStar} />
+                            <FontAwesomeIcon key={index} icon={solidStar} /> :
+                            <FontAwesomeIcon key={index} icon={faStar} />
                     ))
                 }
             </div>
