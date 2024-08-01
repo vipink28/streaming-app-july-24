@@ -17,7 +17,7 @@ function HomeScreen(props) {
         <>
             {
                 status === "success" ?
-                    <Header video={data.results[Math.floor(Math.random() * data.results.length)]} />
+                    <Header video={data.results[Math.floor(Math.random() * data.results.length)]} platform={platformType.tv} />
                     : "Loading"
             }
             <div className='px-4'>

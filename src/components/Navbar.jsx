@@ -11,8 +11,8 @@ function Navbar(props) {
                 {/* menu */}
                 <div className='flex items-center'>
                     <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="/">Home</Link>
-                    <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="/tv">Tv Shows</Link>
-                    <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="/movie">Movies</Link>
+                    <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="browse/tv">Tv Shows</Link>
+                    <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="browse/movie">Movies</Link>
                     <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="/browse">Browse By Genre</Link>
                 </div>
             </div>
