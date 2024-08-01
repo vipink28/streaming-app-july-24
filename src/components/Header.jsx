@@ -21,7 +21,6 @@ function Header(props) {
         }
     }, [video])
 
-
     return (
         <div className='relative h-dvh'>
             {

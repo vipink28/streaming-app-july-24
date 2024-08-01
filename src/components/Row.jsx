@@ -6,7 +6,7 @@ import { fetchUpcomingMovies, selectUpcomingMovies } from '../features/movie/mov
 import Card from './Card';
 
 function Row(props) {
-    const { title, action, selector } = props;
+    const { title, action, selector, platform } = props;
     const { data, status, error } = useSelector(selector);
     const dispatch = useDispatch();
 
@@ -26,7 +26,7 @@ function Row(props) {
                     data ?
                         data.results.map((video) => (
                             <SwiperSlide key={video.id}>
-                                <Card video={video} />
+                                <Card video={video} platform={platform} />
                             </SwiperSlide>
                         )) : ""
                 }
