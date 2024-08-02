@@ -4,14 +4,26 @@ import 'swiper/css';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchUpcomingMovies, selectUpcomingMovies } from '../features/movie/movieSlice';
 import Card from './Card';
+import axios from '../helper/axios';
+import { requests } from '../helper/apiRequests';
 
 function Row(props) {
-    const { title, action, selector, platform } = props;
-    const { data, status, error } = useSelector(selector);
+    const { title, action, selector, platform, genre } = props;
+    const { data, status, error } = useSelector(genre ? (state) => state.tv.netflixOriginals : selector);
     const dispatch = useDispatch();
 
+    fetchVideosByGenre = async () => {
+        const response = await axios.get(requests.getDataByGenre())
+    }
+
+
+
     useEffect(() => {
-        dispatch(action());
+        if (genre) {
+
+        } else {
+            dispatch(action());
+        }
     }, [])
 
     return (
