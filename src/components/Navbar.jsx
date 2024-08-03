@@ -13,7 +13,7 @@ function Navbar(props) {
                     <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="/">Home</Link>
                     <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="browse/tv">Tv Shows</Link>
                     <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="browse/movie">Movies</Link>
-                    <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="/browse">Browse By Genre</Link>
+                    <Link className='font-semibold text-white no-underline py-4 px-3 hover:bg-violet-400 transition' to="/browsebygenre/tv/10765">Browse By Genre</Link>
                 </div>
             </div>
         </nav>

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,16 +11,17 @@ function Row(props) {
     const { title, action, selector, platform, genre } = props;
     const { data, status, error } = useSelector(genre ? (state) => state.tv.netflixOriginals : selector);
     const dispatch = useDispatch();
+    const [videosByGenre, setVideosByGenre] = useState(null);
 
-    fetchVideosByGenre = async () => {
-        const response = await axios.get(requests.getDataByGenre())
+    const fetchVideosByGenre = async (platform, id) => {
+        const response = await axios.get(requests.getDataByGenre(platform, id));
+        setVideosByGenre(response.data.results);
     }
-
 
 
     useEffect(() => {
         if (genre) {
-
+            fetchVideosByGenre(platform, genre.id);
         } else {
             dispatch(action());
         }
@@ -35,12 +36,28 @@ function Row(props) {
                 slidesPerView={5}
             >
                 {
-                    data ?
-                        data.results.map((video) => (
-                            <SwiperSlide key={video.id}>
-                                <Card video={video} platform={platform} />
-                            </SwiperSlide>
-                        )) : ""
+                    genre ?
+                        <>
+                            {
+                                videosByGenre ?
+                                    videosByGenre.map((video) => (
+                                        <SwiperSlide key={video.id}>
+                                            <Card video={video} platform={platform} />
+                                        </SwiperSlide>
+                                    )) : ""
+                            }
+                        </>
+                        :
+                        <>
+                            {
+                                data ?
+                                    data.results.map((video) => (
+                                        <SwiperSlide key={video.id}>
+                                            <Card video={video} platform={platform} />
+                                        </SwiperSlide>
+                                    )) : ""
+                            }
+                        </>
                 }
             </Swiper>
         </div>
