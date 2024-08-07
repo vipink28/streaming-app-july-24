@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchNetflixOriginals, selectNetflixOriginals } from '../features/tv/tvSlice';
 import Header from '../components/Header';
@@ -8,16 +8,29 @@ import { platformType } from '../helper/apiRequests';
 
 function HomeScreen(props) {
     const dispatch = useDispatch();
-    const { data, status, error } = useSelector(selectNetflixOriginals)
+    const { data, status, error } = useSelector(selectNetflixOriginals);
+    const [randomIndex, setRandomIndex] = useState(0);
+
+
     useEffect(() => {
         dispatch(fetchNetflixOriginals());
     }, [])
+
+    useEffect(() => {
+        if (data && data.results) {
+            setRandomIndex(Math.floor(Math.random() * data.results.length));
+            const intervalId = setInterval(() => {
+                setRandomIndex(Math.floor(Math.random() * data.results.length));
+            }, 30000);
+            return () => clearInterval(intervalId);
+        }
+    }, [data]);
 
     return (
         <>
             {
                 status === "success" ?
-                    <Header video={data.results[Math.floor(Math.random() * data.results.length)]} platform={platformType.tv} />
+                    <Header video={data.results[randomIndex]} platform={platformType.tv} />
                     : "Loading"
             }
             <div className='px-4'>
